@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>K</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <button id="orangeRail" class="orange-rail" aria-label="打开功能区"></button>
+  <header class="topbar">
+    <div class="top-spacer"></div>
+    <div id="kPill" class="k-pill"><i id="kLamp"></i><span id="kPillText">K · 连接中</span></div>
+    <button id="traceToggle" class="trace-toggle">轨迹 · 全部</button>
+  </header>
+  <div class="workspace">
+    <main id="stage" class="stage">
+      <section id="stream" class="stream" aria-live="polite"></section>
+      <div id="emptyState" class="empty-state">直接键盘输入，Enter 发送 · Shift+Enter 换行</div>
+      <div id="composerWrap" class="composer-wrap" aria-hidden="false">
+        <textarea id="composer" class="composer" rows="1" maxlength="10000" autocomplete="off" spellcheck="false" aria-label="给 K 输入"></textarea>
+        <div id="composerHint" class="composer-hint"></div>
+      </div>
+      <button id="inputState" class="input-state" aria-label="输入状态" tabindex="-1"></button>
+    </main>
+    <aside id="sidePanel" class="side-panel">
+      <div class="side-section">
+        <div class="side-title">状态</div>
+        <div id="statusRows"></div>
+      </div>
+      <div class="side-section">
+        <div class="side-title">配置</div>
+        <button class="config-row" data-config="model">模型与 API<span>›</span></button>
+        <button class="config-row" data-config="infra">服务器与基础设施<span>›</span></button>
+        <button class="config-row" data-config="tools">工具与能力<span>›</span></button>
+        <button class="config-row" data-config="system">系统与运行<span>›</span></button>
+      </div>
+      <div class="side-section compact">
+        <div class="tiny-row"><span>审计</span><b id="generation">—</b></div>
+        <div class="tiny-row"><span>刷新</span><b id="lastRefresh">—</b></div>
+      </div>
+    </aside>
+  </div>
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-head"><strong id="drawerTitle">功能</strong><button id="drawerClose">×</button></div>
+    <div id="drawerBody" class="drawer-body"></div>
+  </div>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

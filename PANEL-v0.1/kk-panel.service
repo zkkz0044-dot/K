@@ -1,0 +1,34 @@
+[Unit]
+Description=KK local K/F status and chat panel
+After=local-fs.target kk-fk-gateway.service kk-fk-audit-witness.service kk-k-model-gateway.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/root/K/PANEL-v0.1
+ExecStart=/usr/bin/python3 /root/K/PANEL-v0.1/panel_server.py
+Restart=always
+RestartSec=2s
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=127.0.0.0/8
+IPAddressAllow=::1/128
+MemoryMax=384M
+TasksMax=32
+UMask=0077
+ReadOnlyPaths=/root/K
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#EEF3F7">
+<meta name="application-name" content="K">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="K">
+<meta name="format-detection" content="telephone=no">
+<title>K</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="stylesheet" href="/mobile.css">
+</head>
+<body>
+<div id="app" class="mobile-app">
+  <button id="kButton" class="k-button" aria-label="K">K</button>
+  <main id="stage" class="mobile-stage" tabindex="0">
+    <section id="timeline" class="timeline" aria-live="polite"></section>
+    <section id="progressWrap" class="progress-wrap hidden"><div id="progressBar" class="progress-bar"></div></section>
+    <section id="answer" class="answer hidden"></section>
+    <textarea id="textInput" class="text-input" rows="1" maxlength="60000" autocomplete="off" spellcheck="false"></textarea>
+    <section id="attachmentTray" class="attachment-tray hidden"></section>
+    <section id="attachmentMenu" class="attachment-menu" aria-hidden="true">
+      <button type="button" data-pick="image">图片</button>
+      <button type="button" data-pick="video">视频</button>
+      <button type="button" data-pick="file">文件</button>
+    </section>
+    <input id="imageInput" type="file" multiple hidden accept="image/*">
+    <input id="videoInput" type="file" hidden accept="video/*">
+    <input id="fileInput" type="file" multiple hidden accept=".pdf,.txt,.md,.csv,.json,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+    <button id="inputState" class="input-state" aria-label="添加附件"></button>
+    <div id="captureOverlay" class="capture-overlay hidden"></div>
+  </main>
+  <aside id="settings" class="settings-panel" aria-hidden="true"></aside>
+</div>
+<script src="/mobile.js"></script>
+</body>
+</html>
