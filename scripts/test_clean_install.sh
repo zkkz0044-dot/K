@@ -34,6 +34,12 @@ import json
 import sys
 
 stage = Path(sys.argv[1])
+for path in stage.rglob("*"):
+    if path.is_file() and not path.is_symlink():
+        with path.open("rb") as stream:
+            if stream.read(2) == b"#!":
+                path.chmod(path.stat().st_mode | 0o100)
+
 tools = ["files.read", "browser.search", "remote.vps.health"]
 actions = [
     "A01_READ_PROJECT_STATE",
