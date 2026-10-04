@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import json
+import sys
+
+from kk_k.external_tools import (
+    REQUEST_SCHEMA as EXTERNAL_REQUEST_SCHEMA,
+    REQUEST_SCHEMA_V2 as EXTERNAL_REQUEST_SCHEMA_V2,
+    ExternalToolError,
+    execute_external_tool,
+    external_catalog_status,
+    load_external_catalog,
+)
+from kk_k.tool_layer import (
+    REQUEST_SCHEMA as INTERNAL_REQUEST_SCHEMA,
+    ToolLayerError,
+    describe_tools,
+    execute_tool,
+    load_registry,
+)
+
+
+def _run_named_tool(name: str) -> dict:
+    internal = load_registry()
+    if name in internal:
+        return execute_tool({"schema": INTERNAL_REQUEST_SCHEMA, "tool": name})
+    external = load_external_catalog()
+    if name not in external:
+        raise ToolLayerError("unknown tool")
+    if external[name].args_schema is not None:
+        raise ExternalToolError("tool requires args; use run-json")
+    return execute_external_tool({"schema": EXTERNAL_REQUEST_SCHEMA, "tool": name})
+
+def _run_named_tool_with_args(name: str, args: object) -> dict:
+    external = load_external_catalog()
+    if name not in external:
+        raise ToolLayerError("unknown external tool")
+    if external[name].args_schema is None:
+        raise ExternalToolError("tool does not accept args")
+    if not isinstance(args, dict):
+        raise ExternalToolError("run-json payload must be object")
+    return execute_external_tool({
+        "schema": EXTERNAL_REQUEST_SCHEMA_V2,
+        "tool": name,
+        "args": args,
+    })
+
+
+def main(argv: list[str]) -> int:
+    if len(argv) == 2 and argv[1] == "list":
+        print(json.dumps(describe_tools(), ensure_ascii=False, indent=2))
+        return 0
+    if len(argv) == 2 and argv[1] == "catalog":
+        try:
+            out = external_catalog_status()
+        except ExternalToolError as exc:
+            print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
+            return 2
+        print(json.dumps(out, ensure_ascii=False, indent=2))
+        return 0
+    if len(argv) == 3 and argv[1] == "run":
+        try:
+            out = _run_named_tool(argv[2])
+        except (ToolLayerError, ExternalToolError) as exc:
+            print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
+            return 2
+        print(json.dumps(out, ensure_ascii=False, sort_keys=True))
+        return 0 if out.get("verified") is True else 3
+    if len(argv) == 4 and argv[1] == "run-json":
+        try:
+            args = json.loads(argv[3])
+            out = _run_named_tool_with_args(argv[2], args)
+        except (json.JSONDecodeError, ToolLayerError, ExternalToolError) as exc:
+            print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
+            return 2
+        print(json.dumps(out, ensure_ascii=False, sort_keys=True))
+        return 0 if out.get("verified") is True else 3
+    print(
+        "usage: toolctl list | toolctl catalog | toolctl run <tool> | toolctl run-json <tool> '<json-object>'",
+        file=sys.stderr,
+    )
+    return 64
+
+
+if __name__ == "__main__":
+    raise SystemExit(main(sys.argv))

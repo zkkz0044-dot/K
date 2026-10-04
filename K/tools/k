@@ -1,0 +1,38 @@
+#!/bin/sh
+set -eu
+BASE=/root/K
+LOCK=/root/K/FK/runtime/human-console.lock
+mkdir -p /root/K/FK/runtime
+exec 9>"$LOCK"
+if ! flock -n 9; then
+  echo 'K human console is locked by another validation/runtime session.' >&2; exit 5
+fi
+if [ "$(id -u)" -ne 0 ]; then
+  echo 'K console launcher requires the authorized root SSH session.' >&2; exit 2
+fi
+for svc in kk-fk-audit-witness.service kk-k-model-gateway.service; do
+  if ! systemctl is-active --quiet "$svc"; then
+    echo "K runtime dependency is not active: $svc" >&2; exit 3
+  fi
+done
+if systemctl is-active --quiet kk-k-runtime.service; then
+  echo 'K console is already active; concurrent human sessions are denied.' >&2; exit 4
+fi
+exec systemd-run --pty --wait --collect --unit=kk-k-runtime \
+  --property=DynamicUser=yes \
+  --property=RefuseManualStop=yes \
+  --property=NoNewPrivileges=yes \
+  --property=ProtectSystem=strict \
+  --property=ProtectHome=tmpfs \
+  --property=PrivateTmp=yes \
+  --property=RestrictSUIDSGID=yes \
+  --property=LockPersonality=yes \
+  --property=RestrictAddressFamilies=AF_UNIX \
+  --property=IPAddressDeny=any \
+  --property=MemoryMax=256M \
+  --property=TasksMax=64 \
+  --property=UMask=0077 \
+  --property=BindReadOnlyPaths=/root/K/K:/run/kk-k-ro \
+  --property=BindReadOnlyPaths=/root/K/FK/runtime/model-ipc:/run/kk-model-ipc \
+  --setenv=PYTHONPATH=/run/kk-k-ro/src \
+  /usr/bin/python3 -m kk_k.console
