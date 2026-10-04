@@ -1,0 +1,8 @@
+[Unit]
+Description=KK bounded active world observation cycle
+After=kk-fk-tool-gateway.service kk-cap-search.service
+Requires=kk-fk-tool-gateway.service kk-cap-search.service
+
+[Service]
+Type=oneshot
+ExecStart=/root/K/K/tools/run_world_observation_cycle.sh

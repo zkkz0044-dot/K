@@ -1,0 +1,16 @@
+[Unit]
+Description=KK persistent world daemon
+After=kk-fk-tool-gateway.service kk-cap-search.service kk-k-model-gateway.service
+Requires=kk-fk-tool-gateway.service kk-cap-search.service kk-k-model-gateway.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+ExecStart=/root/K/K/tools/kk_world_daemon.sh
+Restart=always
+RestartSec=5
+KillMode=control-group
+TimeoutStopSec=20
+
+[Install]
+WantedBy=multi-user.target

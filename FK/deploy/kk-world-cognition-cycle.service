@@ -1,0 +1,9 @@
+[Unit]
+Description=KK bounded world cognition cycle
+After=kk-k-model-gateway.service
+Requires=kk-k-model-gateway.service
+
+[Service]
+Type=oneshot
+ExecStart=/root/K/K/tools/run_world_cognition_cycle.sh
+TimeoutStartSec=180
