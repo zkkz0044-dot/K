@@ -28,4 +28,4 @@ jobs:
         run: python scripts/verify_sha256.py
 
       - name: Run isolated clean-install validation
-        run: sudo -E bash scripts/test_clean_install.sh
+        run: sudo env "PATH=$PATH" bash scripts/test_clean_install.sh
