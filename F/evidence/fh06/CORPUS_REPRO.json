@@ -1,0 +1,1 @@
+{"version":"0.1","seed_json_mutation":61446,"seed_cross_validator":4026933286,"cross_validator_cases":10500,"classes":["duplicate_keys","nonfinite_numbers","type_confusion","unicode_path_ambiguity","nul_injection","oversize_json","oversize_files","extreme_counts","extreme_path_length","extreme_numeric_size","atomic_path_swap","fd_hygiene","evidence_oversize_line"]}
