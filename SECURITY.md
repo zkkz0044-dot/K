@@ -6,13 +6,11 @@ K / F / FK is built around explicit authority boundaries. Security-sensitive cha
 
 Do not publish credentials, exploit details against a live deployment, personal data, or private infrastructure information in a public issue.
 
-For a public release, configure a private security-reporting channel before enabling community issue intake for vulnerabilities.
-
-The release candidate currently has no public reporting endpoint. The publisher
-must enable GitHub private vulnerability reporting on the final repository and
-verify that its Security tab offers the private reporting action before making
-the repository public. Until then, this reporting gate remains pending; no
-invented contact address is supplied.
+GitHub private vulnerability reporting is enabled for this repository.
+Use [Report a vulnerability](https://github.com/zkkz0044-dot/K/security/advisories/new)
+to report a potential vulnerability privately to the maintainer. Include the
+affected commit, a minimal reproduction, and the observed impact. Do not include
+real credentials or personal history in the reproduction.
 
 Supported security review target: this experimental source candidate. The panel
 and mobile gateway bind to loopback and provide no user authentication. Use only
@@ -34,7 +32,7 @@ Before release run:
 
 ```bash
 python3 scripts/check_public_tree.py
-./scripts/test_all.sh
+bash scripts/test_all.sh
 ```
 
 A hygiene failure must be investigated. Do not add an ignore rule merely to make a release check pass.
