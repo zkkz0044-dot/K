@@ -1,0 +1,27 @@
+# Python / test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local runtime state
+**/runtime/
+**/secrets/
+*.sock
+*.pid
+*.log
+*.sqlite
+*.sqlite3
+*.db
+
+# Local environment overrides
+.env
+.env.*
+*.env.local
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
