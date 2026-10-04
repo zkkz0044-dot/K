@@ -1,0 +1,9 @@
+{
+  "schema": "K.COGNITION.RUNTIME_STATE.1",
+  "provider_chain_id": "replaceable-provider-chain",
+  "enabled_provider_ids": [
+    "OPENAI_RESPONSES_API"
+  ],
+  "primary_provider_id": "OPENAI_RESPONSES_API",
+  "description": "replaceable cognition provider chain (enabled: OPENAI_RESPONSES_API)"
+}

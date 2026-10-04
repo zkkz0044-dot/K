@@ -1,0 +1,9 @@
+{
+  "schema": "K.DIALOGUE.IDENTITY_BINDING.1",
+  "public_identity": "K",
+  "current_cognitive_engine": "replaceable cognition provider chain",
+  "current_cognitive_engine_id": "provider-chain",
+  "engine_is_identity": false,
+  "public_speaker": "K",
+  "truthful_architecture_disclosure": true
+}

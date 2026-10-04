@@ -1,0 +1,1 @@
+{"digest_ttl_days":14,"policy":{"delete_only_after_cognition_and_seen_commit":true,"exact_seen_registry_persistent":true,"legacy_cleanup_enabled":false,"notable_news":"LONG_TERM_EXPERIENCE_AND_SELECTED_EVIDENCE","ordinary_news":"TEMPORARY_DIGEST"},"schema":"K.WORLD.RETENTION.CONFIG.1","version":1}
