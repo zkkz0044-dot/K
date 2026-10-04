@@ -1,0 +1,1 @@
+{"authority_id":"fk-a03-smoke","max_restart_attempts":1,"process_spec":{"argv":[],"cwd":"/root/K/F","env":{},"executable":"/root/K/F/fk_actions/a03_smoke.py","sha256":"83bf2c5e090b4df2683d797e0ab8dbc446905366816ded000c43340ba8586dce","version":"0.1"},"version":"0.2"}
