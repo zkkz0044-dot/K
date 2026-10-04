@@ -42,7 +42,7 @@ git clone https://github.com/zkkz0044-dot/K.git
 cd K
 python3 scripts/check_public_tree.py
 python3 scripts/verify_sha256.py
-sudo bash scripts/test_clean_install.sh
+sudo env "PATH=$PATH" bash scripts/test_clean_install.sh
 ```
 
 测试不需要 API 密钥，也不调用付费模型。首次运行细节见 [FIRST_RUN](docs/FIRST_RUN.md)。

@@ -48,7 +48,7 @@ git clone https://github.com/zkkz0044-dot/K.git
 cd K
 python3 scripts/check_public_tree.py
 python3 scripts/verify_sha256.py
-sudo bash scripts/test_clean_install.sh
+sudo env "PATH=$PATH" bash scripts/test_clean_install.sh
 ```
 
 No API key or paid inference is needed for these tests. They stage disposable
