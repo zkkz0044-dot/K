@@ -1,0 +1,28 @@
+[Unit]
+Description=KK isolated read-only web search capability
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+ExecStart=/usr/bin/python3 /run/kk-cap-search-ro/search_worker.py
+Restart=always
+RestartSec=2s
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=tmpfs
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+MemoryMax=80M
+TasksMax=16
+UMask=0077
+BindReadOnlyPaths=/root/K/F/capabilities:/run/kk-cap-search-ro
+
+[Install]
+WantedBy=multi-user.target

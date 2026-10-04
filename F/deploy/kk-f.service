@@ -1,0 +1,48 @@
+[Unit]
+Description=KK F deterministic runtime supervisor
+Requires=kk-f-witness.service
+After=local-fs.target kk-f-witness.service
+
+[Service]
+Type=simple
+User=kk-f
+Group=kk-f
+WorkingDirectory=/var/lib/kk-f
+Environment=PYTHONPATH=/opt/kk-f/src
+Environment=KK_F_WITNESS_SOCKET=/run/kk-f-witness/witness.sock
+ExecStart=/usr/bin/python3 -m kk_f.production_daemon --config /etc/kk-f/runtime.json
+Restart=on-failure
+RestartSec=5s
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectProc=invisible
+ProtectHostname=yes
+ProtectClock=yes
+ProtectKernelLogs=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictAddressFamilies=AF_UNIX
+SystemCallArchitectures=native
+MemoryHigh=192M
+MemoryMax=256M
+MemorySwapMax=128M
+TasksMax=64
+CPUQuota=50%
+LimitNOFILE=256
+LimitCORE=0
+ProtectSystem=strict
+ProtectHome=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+ReadOnlyPaths=/etc/kk-f /opt/kk-f
+ReadWritePaths=/var/lib/kk-f /run/kk-f
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
