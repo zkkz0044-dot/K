@@ -20,7 +20,7 @@ From the repository root:
 ```bash
 python3 scripts/check_public_tree.py
 python3 scripts/verify_sha256.py
-sudo bash scripts/test_clean_install.sh
+sudo env "PATH=$PATH" bash scripts/test_clean_install.sh
 ```
 
 The gate creates temporary source copies, overlays their reference `/root/K`
@@ -33,6 +33,18 @@ provider. It performs no paid inference or external tool request.
 Expected final line: `CLEAN_INSTALL_TESTS_PASS`. If any step fails, keep the full
 failure output and environment version; do not replace FAIL with an old manifest's
 PASS or disable a safety check.
+
+## Executable entry points
+
+Web uploads and some ZIP tools discard executable file modes. Before using CLI
+entry points directly in a Linux checkout, restore the bundled shebang scripts:
+
+```bash
+python3 scripts/restore_executable_modes.py
+```
+
+The offline gate restores these modes only in its disposable staging copy.
+The GitHub release ZIP also preserves the Unix executable modes.
 
 ## Runtime exploration
 
