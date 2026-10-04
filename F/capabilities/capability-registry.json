@@ -1,0 +1,17 @@
+{
+  "schema": "F.CAPABILITY.REGISTRY.1",
+  "bindings": {
+    "CURRENT_EXTERNAL": {
+      "tool": "browser.search",
+      "args_from": ["query"]
+    },
+    "PROJECT_FILE": {
+      "tool": "files.read",
+      "args_from": ["path"]
+    },
+    "VPS_HEALTH": {
+      "tool": "remote.vps.health",
+      "args_from": []
+    }
+  }
+}
