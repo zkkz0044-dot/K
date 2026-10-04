@@ -1,0 +1,10 @@
+{
+  "schema": "K.ISOLATION.1",
+  "project_root": "/root/K/K",
+  "filesystem_scope": "PROJECT_ROOT_ONLY",
+  "cross_project_access": false,
+  "webroot_staging": false,
+  "temporary_http_transfer": false,
+  "external_storage_staging": false,
+  "fk_access_before_user_approval": false
+}

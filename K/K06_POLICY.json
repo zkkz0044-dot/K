@@ -1,0 +1,13 @@
+{
+  "schema": "K06.POLICY.1",
+  "allowed_actions": [
+    "A01_READ_PROJECT_STATE",
+    "A02_READ_F_STATUS",
+    "A03_RUN_F_SMOKE_TEST",
+    "A04_WRITE_K_DECISION_LOG",
+    "A05_NO_ACTION"
+  ],
+  "human_required_actions": ["A03_RUN_F_SMOKE_TEST"],
+  "max_actions_per_run": 8,
+  "max_same_action_consecutive": 2
+}

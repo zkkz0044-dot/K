@@ -1,0 +1,30 @@
+{
+  "schema": "K.TOOL.REGISTRY.1",
+  "tools": {
+    "kk.project_state.read": {
+      "action_id": "A01_READ_PROJECT_STATE",
+      "risk": "L0",
+      "human_required": false
+    },
+    "kk.f_status.read": {
+      "action_id": "A02_READ_F_STATUS",
+      "risk": "L0",
+      "human_required": false
+    },
+    "kk.f_smoke.run": {
+      "action_id": "A03_RUN_F_SMOKE_TEST",
+      "risk": "L2",
+      "human_required": true
+    },
+    "kk.decision_log.write": {
+      "action_id": "A04_WRITE_K_DECISION_LOG",
+      "risk": "L1",
+      "human_required": false
+    },
+    "kk.noop": {
+      "action_id": "A05_NO_ACTION",
+      "risk": "L0",
+      "human_required": false
+    }
+  }
+}

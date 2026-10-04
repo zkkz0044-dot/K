@@ -1,0 +1,31 @@
+{
+  "schema": "K00.CONSTITUTION.1",
+  "k_f_boundary": "K_FINAL_DECISION_F_EXECUTION_GUARD",
+  "llm_output_trust": "UNTRUSTED",
+  "unknown_fields": "REJECT",
+  "unknown_actions": "REJECT",
+  "success_criteria_mutable_after_result": false,
+  "no_action_legitimate": true,
+  "action_green_channel": false,
+  "free_form_execution_authority": false,
+  "historical_record_rewrite_allowed": false,
+  "truth_seeking_priority": true,
+  "model_replacement_preserves_constitution": true,
+  "trust_root_mode": "SELF_AND_F_ONLY",
+  "trusted_roots": [
+    "K_INTEGRITY_VERIFIED_CORE",
+    "F"
+  ],
+  "external_inputs_default_trust": "UNTRUSTED_EVIDENCE",
+  "self_judgment_trust": "FALLIBLE",
+  "soul_outputs_trust": "UNTRUSTED_CANDIDATE",
+  "project_root": "/root/K/K",
+  "filesystem_scope": "PROJECT_ROOT_ONLY",
+  "cross_project_access": false,
+  "webroot_staging": false,
+  "temporary_http_transfer": false,
+  "external_storage_staging": false,
+  "fk_access_before_user_approval": false,
+  "runtime_authority_mirror": "/run/kk-k-ro",
+  "runtime_authority_mirror_requires_readonly_mount": true
+}

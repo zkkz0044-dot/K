@@ -1,0 +1,86 @@
+{
+  "schema": "K.EXTERNAL.TOOL.CATALOG.2",
+  "tools": {
+    "remote.vps.health": {
+      "class": "remote",
+      "risk": "L0",
+      "enabled": true,
+      "human_required": false,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": "HOST_HEALTH_V1",
+      "args_schema": null
+    },
+    "files.read": {
+      "class": "data",
+      "risk": "L0",
+      "enabled": true,
+      "human_required": false,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": "FILE_READ_V1",
+      "args_schema": "FILES_READ_1"
+    },
+    "browser.search": {
+      "class": "browser",
+      "risk": "L0",
+      "enabled": true,
+      "human_required": false,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": "WEB_SEARCH_V1",
+      "args_schema": "WEB_SEARCH_1"
+    },
+    "remote.windows.health": {
+      "class": "remote",
+      "risk": "L0",
+      "enabled": false,
+      "human_required": false,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": null,
+      "args_schema": null
+    },
+    "gmail.search": {
+      "class": "account",
+      "risk": "L0",
+      "enabled": false,
+      "human_required": false,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": null,
+      "args_schema": null
+    },
+    "github.read": {
+      "class": "account",
+      "risk": "L0",
+      "enabled": false,
+      "human_required": false,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": null,
+      "args_schema": null
+    },
+    "database.query.readonly": {
+      "class": "data",
+      "risk": "L0",
+      "enabled": false,
+      "human_required": false,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": null,
+      "args_schema": null
+    },
+    "notify.send": {
+      "class": "notify",
+      "risk": "L3",
+      "enabled": false,
+      "human_required": true,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": null,
+      "args_schema": null
+    },
+    "files.write": {
+      "class": "data",
+      "risk": "L1",
+      "enabled": false,
+      "human_required": true,
+      "authority_route": "FK_TOOL_GATEWAY_V1",
+      "verifier": null,
+      "args_schema": null
+    }
+  }
+}
