@@ -1,0 +1,28 @@
+{
+  "schema": "K.COGNITION.PROVIDERS.2",
+  "providers": {
+    "openai": {
+      "provider_id": "OPENAI_RESPONSES_API",
+      "socket": "/run/kk-model-ipc/host-relay.sock",
+      "enabled": true,
+      "timeout_seconds": 125
+    }
+  },
+  "routes": {
+    "default": [
+      "openai"
+    ],
+    "K_CAPABILITY_PLAN": [
+      "openai"
+    ],
+    "SOUL_A_DIALOGUE": [
+      "openai"
+    ],
+    "SOUL_B_DIALOGUE": [
+      "openai"
+    ],
+    "SOUL_C_DIALOGUE": [
+      "openai"
+    ]
+  }
+}
